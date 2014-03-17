@@ -77,9 +77,8 @@ void loop() {
     average[x] = (total[x] / numReadings);                      //Divide total by number of readings taken to obtain the average
     
     if (average[x] > lastAverage[x] + 7 || average[x] < lastAverage[x] - 7) {
-      byteSend[x] = average[x]/4;
       Serial.write(id[x]);
-      Serial.write(byteSend[x]);
+      Serial.write(average[x]);
       delay(10);
       lastAverage[x] = average[x];   
     }  
@@ -93,27 +92,6 @@ void loop() {
   index += 1;                                                   //Advance index to next position
   if (index >= numReadings) index = 0;                          //Reset index once all readings have been taken 
   writeRegisters();
-  
-  //MaxMaxMax
-  
-//   Serial.write(average[0]);
-//   //without delay, it works weird.
-//   delay(10);
-//   
-//    delay(10);
-//    Serial.write(average[2]);
-//   delay(10);
-//   Serial.write(average[3]);
-//    delay(10);
-//    Serial.write(average[4]);
-//   delay(10);
-//   Serial.write(average[5]);
-//    delay(10);
-//    Serial.write(average[6]);
-//   delay(10);
-//   Serial.write(average[7]);
-//   }
-  //MaxMaxMax
   delay(10);                                                    // delay in between reads for stability 
 }
 
